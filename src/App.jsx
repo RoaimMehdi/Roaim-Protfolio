@@ -13,7 +13,7 @@ export default function App() {
   const [isResumeOpen, setIsResumeOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-[#080c15] text-slate-100 font-sans selection:bg-emerald-500 selection:text-black">
+    <div className="min-h-screen bg-[#080c15] text-slate-100 font-sans selection:bg-emerald-500 selection:text-black overflow-x-hidden">
       <Navbar onOpenResume={() => setIsResumeOpen(true)} />
       <main>
         <Hero onOpenResume={() => setIsResumeOpen(true)} />

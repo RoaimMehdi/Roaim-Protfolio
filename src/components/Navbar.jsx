@@ -10,7 +10,7 @@ export default function Navbar({ onOpenResume }) {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
     };
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -34,14 +34,14 @@ export default function Navbar({ onOpenResume }) {
 
   return (
     <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-      isScrolled ? 'glass-panel py-2 sm:py-3 shadow-xl border-b border-dark-border' : 'bg-transparent py-3 sm:py-5'
+      isScrolled ? 'glass-panel py-2 shadow-xl border-b border-dark-border' : 'bg-transparent py-3'
     }`}>
-      <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
           
           {/* Logo */}
-          <a href="#home" className="flex items-center gap-2 sm:gap-3 group min-w-0">
-            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl overflow-hidden border border-dark-border group-hover:border-emerald-500/50 transition-all shadow-md flex-shrink-0">
+          <a href="#home" className="flex items-center gap-2 sm:gap-3 group min-w-0 flex-shrink-0">
+            <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl overflow-hidden border border-dark-border group-hover:border-emerald-500/50 transition-all shadow-md flex-shrink-0">
               <img 
                 src="/logo.svg" 
                 alt="RM Logo" 
@@ -49,7 +49,7 @@ export default function Navbar({ onOpenResume }) {
               />
             </div>
             <div className="min-w-0 hidden sm:block">
-              <span className="font-bold text-sm sm:text-base text-white tracking-tight block group-hover:text-emerald-400 transition-colors truncate">
+              <span className="font-bold text-sm sm:text-base text-white tracking-tight block group-hover:text-emerald-400 transition-colors truncate max-w-[120px] md:max-w-none">
                 {personalInfo.name}
               </span>
               <span className="text-[10px] sm:text-[11px] text-slate-400 font-mono flex items-center gap-1.5">
@@ -60,7 +60,7 @@ export default function Navbar({ onOpenResume }) {
           </a>
 
           {/* Nav Links - hidden on mobile */}
-          <nav className="hidden lg:flex items-center gap-0.5 xl:gap-1 bg-dark-surface/90 backdrop-blur-md px-2 xl:px-3 py-1.5 rounded-xl border border-dark-border">
+          <nav className="hidden lg:flex items-center gap-0.5 xl:gap-1 bg-dark-surface/90 backdrop-blur-md px-2 xl:px-3 py-1.5 rounded-xl border border-dark-border flex-shrink-0">
             {navLinks.map((link) => (
               <a
                 key={link.name}
@@ -73,7 +73,7 @@ export default function Navbar({ onOpenResume }) {
           </nav>
 
           {/* Action CTAs */}
-          <div className="hidden lg:flex items-center gap-2 xl:gap-3">
+          <div className="hidden lg:flex items-center gap-2 xl:gap-3 flex-shrink-0">
             <button
               onClick={onOpenResume}
               className="flex items-center gap-1.5 px-3 xl:px-3.5 py-2 text-[11px] xl:text-xs font-medium rounded-lg bg-dark-surface text-slate-200 border border-dark-border hover:border-emerald-500/50 hover:text-white transition-all whitespace-nowrap"
@@ -92,7 +92,7 @@ export default function Navbar({ onOpenResume }) {
           </div>
 
           {/* Mobile Toggle */}
-          <div className="flex lg:hidden items-center gap-1.5 sm:gap-2">
+          <div className="flex lg:hidden items-center gap-1.5 sm:gap-2 flex-shrink-0">
             <button
               onClick={onOpenResume}
               className="p-2 rounded-lg bg-dark-surface text-emerald-400 border border-dark-border"
