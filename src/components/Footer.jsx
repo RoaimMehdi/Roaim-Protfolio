@@ -9,15 +9,15 @@ export default function Footer() {
   };
 
   return (
-    <footer className="border-t border-white/10 bg-dark-bg py-12 relative overflow-hidden">
+    <footer className="border-t border-white/10 bg-dark-bg py-8 sm:py-12 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <RevealSection variant="fadeUp">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-6">
             
             {/* Logo & Branding */}
-            <div className="flex items-center gap-3">
-              <div className="w-11 h-11 rounded-xl overflow-hidden border border-dark-border shadow-md">
+            <div className="flex items-center gap-2.5 sm:gap-3">
+              <div className="w-9 h-9 sm:w-11 sm:h-11 rounded-xl overflow-hidden border border-dark-border shadow-md flex-shrink-0">
                 <img 
                   src="/logo.svg" 
                   alt="RM Logo" 
@@ -25,13 +25,13 @@ export default function Footer() {
                 />
               </div>
               <div>
-                <span className="font-bold text-base text-white block">{personalInfo.name}</span>
-                <span className="text-xs text-slate-400 font-mono">Software Engineer & Full Stack Dev</span>
+                <span className="font-bold text-sm sm:text-base text-white block">{personalInfo.name}</span>
+                <span className="text-[10px] sm:text-xs text-slate-400 font-mono">Software Engineer & Full Stack Dev</span>
               </div>
             </div>
 
             {/* Quick Links */}
-            <div className="flex flex-wrap justify-center gap-6 text-xs text-slate-400 font-mono">
+            <div className="flex flex-wrap justify-center gap-3 sm:gap-4 lg:gap-6 text-[10px] sm:text-xs text-slate-400 font-mono">
               <a href="#home" className="hover:text-emerald-400 transition-colors">Home</a>
               <a href="#autovexo" className="hover:text-emerald-400 transition-colors text-emerald-300 font-bold">Autovexo</a>
               <a href="#projects" className="hover:text-emerald-400 transition-colors">Projects</a>
@@ -43,10 +43,10 @@ export default function Footer() {
             {/* Back to top button */}
             <button
               onClick={scrollToTop}
-              className="p-3 rounded-xl bg-dark-surface border border-white/10 text-slate-400 hover:text-emerald-400 hover:border-emerald-400/50 transition-all shadow-md group"
+              className="p-2.5 sm:p-3 rounded-xl bg-dark-surface border border-white/10 text-slate-400 hover:text-emerald-400 hover:border-emerald-400/50 transition-all shadow-md group flex-shrink-0"
               title="Back to top"
             >
-              <ArrowUp className="w-5 h-5 group-hover:-translate-y-1 transition-transform" />
+              <ArrowUp className="w-4 h-4 sm:w-5 sm:h-5 group-hover:-translate-y-1 transition-transform" />
             </button>
 
           </div>
@@ -54,10 +54,10 @@ export default function Footer() {
 
         {/* Sub Footer */}
         <RevealSection variant="fadeUp" delay={200}>
-          <div className="mt-8 pt-6 border-t border-white/5 text-center text-xs text-slate-500 font-mono flex flex-col sm:flex-row items-center justify-between gap-3">
+          <div className="mt-6 sm:mt-8 pt-4 sm:pt-6 border-t border-white/5 text-center text-[10px] sm:text-xs text-slate-500 font-mono flex flex-col sm:flex-row items-center justify-between gap-2 sm:gap-3">
             <span>© 2025 Roaim Mehdi. All rights reserved.</span>
             <span className="flex items-center gap-1">
-              Built for High Impact <Sparkles className="w-3.5 h-3.5 text-emerald-400" /> Karachi, Pakistan
+              Built for High Impact <Sparkles className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-emerald-400" /> Karachi, Pakistan
             </span>
           </div>
         </RevealSection>

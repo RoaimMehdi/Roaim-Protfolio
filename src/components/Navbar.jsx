@@ -14,6 +14,15 @@ export default function Navbar({ onOpenResume }) {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Close mobile menu on resize
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 768) setMobileMenuOpen(false);
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   const navLinks = [
     { name: 'Home', href: '#home' },
     { name: 'Autovexo', href: '#autovexo' },
@@ -25,38 +34,38 @@ export default function Navbar({ onOpenResume }) {
 
   return (
     <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-      isScrolled ? 'glass-panel py-3 shadow-xl border-b border-dark-border' : 'bg-transparent py-5'
+      isScrolled ? 'glass-panel py-2 sm:py-3 shadow-xl border-b border-dark-border' : 'bg-transparent py-3 sm:py-5'
     }`}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
         <div className="flex items-center justify-between">
           
           {/* Logo */}
-          <a href="#home" className="flex items-center gap-3 group">
-            <div className="w-10 h-10 rounded-xl overflow-hidden border border-dark-border group-hover:border-emerald-500/50 transition-all shadow-md">
+          <a href="#home" className="flex items-center gap-2 sm:gap-3 group min-w-0">
+            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl overflow-hidden border border-dark-border group-hover:border-emerald-500/50 transition-all shadow-md flex-shrink-0">
               <img 
                 src="/logo.svg" 
                 alt="RM Logo" 
                 className="w-full h-full object-cover"
               />
             </div>
-            <div>
-              <span className="font-bold text-base text-white tracking-tight block group-hover:text-emerald-400 transition-colors">
+            <div className="min-w-0 hidden sm:block">
+              <span className="font-bold text-sm sm:text-base text-white tracking-tight block group-hover:text-emerald-400 transition-colors truncate">
                 {personalInfo.name}
               </span>
-              <span className="text-[11px] text-slate-400 font-mono flex items-center gap-1.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+              <span className="text-[10px] sm:text-[11px] text-slate-400 font-mono flex items-center gap-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 flex-shrink-0"></span>
                 Software Engineer
               </span>
             </div>
           </a>
 
-          {/* Nav Links */}
-          <nav className="hidden md:flex items-center gap-1 bg-dark-surface/90 backdrop-blur-md px-3 py-1.5 rounded-xl border border-dark-border">
+          {/* Nav Links - hidden on mobile */}
+          <nav className="hidden lg:flex items-center gap-0.5 xl:gap-1 bg-dark-surface/90 backdrop-blur-md px-2 xl:px-3 py-1.5 rounded-xl border border-dark-border">
             {navLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
-                className="px-3.5 py-1.5 text-xs font-medium rounded-lg text-slate-300 hover:text-white hover:bg-white/5 transition-all"
+                className="px-2.5 xl:px-3.5 py-1.5 text-[11px] xl:text-xs font-medium rounded-lg text-slate-300 hover:text-white hover:bg-white/5 transition-all whitespace-nowrap"
               >
                 {link.name}
               </a>
@@ -64,18 +73,18 @@ export default function Navbar({ onOpenResume }) {
           </nav>
 
           {/* Action CTAs */}
-          <div className="hidden lg:flex items-center gap-3">
+          <div className="hidden lg:flex items-center gap-2 xl:gap-3">
             <button
               onClick={onOpenResume}
-              className="flex items-center gap-1.5 px-3.5 py-2 text-xs font-medium rounded-lg bg-dark-surface text-slate-200 border border-dark-border hover:border-emerald-500/50 hover:text-white transition-all"
+              className="flex items-center gap-1.5 px-3 xl:px-3.5 py-2 text-[11px] xl:text-xs font-medium rounded-lg bg-dark-surface text-slate-200 border border-dark-border hover:border-emerald-500/50 hover:text-white transition-all whitespace-nowrap"
             >
               <FileText className="w-3.5 h-3.5 text-emerald-400" />
-              Curriculum Vitae
+              CV
             </button>
             
             <a
               href="#contact"
-              className="flex items-center gap-1.5 px-4 py-2 text-xs font-semibold rounded-lg bg-emerald-600 text-white hover:bg-emerald-500 transition-all shadow-md"
+              className="flex items-center gap-1.5 px-3 xl:px-4 py-2 text-[11px] xl:text-xs font-semibold rounded-lg bg-emerald-600 text-white hover:bg-emerald-500 transition-all shadow-md whitespace-nowrap"
             >
               Get In Touch
               <ArrowUpRight className="w-3.5 h-3.5" />
@@ -83,7 +92,7 @@ export default function Navbar({ onOpenResume }) {
           </div>
 
           {/* Mobile Toggle */}
-          <div className="md:hidden flex items-center gap-2">
+          <div className="flex lg:hidden items-center gap-1.5 sm:gap-2">
             <button
               onClick={onOpenResume}
               className="p-2 rounded-lg bg-dark-surface text-emerald-400 border border-dark-border"
@@ -102,14 +111,16 @@ export default function Navbar({ onOpenResume }) {
       </div>
 
       {/* Mobile Menu */}
-      {mobileMenuOpen && (
-        <div className="md:hidden glass-panel border-b border-dark-border px-4 pt-3 pb-5 mt-2 space-y-1">
+      <div className={`lg:hidden overflow-hidden transition-all duration-300 ${
+        mobileMenuOpen ? 'max-h-[400px] opacity-100' : 'max-h-0 opacity-0'
+      }`}>
+        <div className="glass-panel border-b border-dark-border px-4 pt-3 pb-5 mt-2 space-y-1">
           {navLinks.map((link) => (
             <a
               key={link.name}
               href={link.href}
               onClick={() => setMobileMenuOpen(false)}
-              className="block px-3 py-2 text-sm font-medium rounded-lg text-slate-300 hover:bg-white/5 hover:text-white"
+              className="block px-3 py-2.5 text-sm font-medium rounded-lg text-slate-300 hover:bg-white/5 hover:text-white"
             >
               {link.name}
             </a>
@@ -124,7 +135,7 @@ export default function Navbar({ onOpenResume }) {
             </a>
           </div>
         </div>
-      )}
+      </div>
     </header>
   );
 }

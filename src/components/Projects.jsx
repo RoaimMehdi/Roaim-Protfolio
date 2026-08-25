@@ -68,15 +68,15 @@ export default function Projects() {
                       alt={project.title}
                       onError={(e) => {
                         e.target.onerror = null;
-                        e.target.src = 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=1000';
+                        e.target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(project.title)}&background=065f46&color=10b981&size=400&bold=true`;
                       }}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />
                   ) : (
                     <div className="w-full h-full bg-dark-surface flex flex-col items-center justify-center p-4 text-center border border-dashed border-dark-border">
                       <ImagePlus className="w-6 h-6 text-emerald-400 mb-1" />
-                      <span className="text-xs font-bold text-white">Autovexo Image Slot</span>
-                      <span className="text-[10px] text-slate-400 mt-0.5">Upload screenshot to public/autovexo-preview.png</span>
+                      <span className="text-xs font-bold text-white">Screenshot Coming Soon</span>
+                      <span className="text-[10px] text-slate-400 mt-0.5">Add image to public/ folder</span>
                     </div>
                   )}
 
@@ -135,13 +135,21 @@ export default function Projects() {
             <div className="p-5 overflow-y-auto space-y-4 text-xs">
               {selectedProject.image ? (
                 <div className="w-full h-52 rounded-lg overflow-hidden bg-dark-bg border border-dark-border">
-                  <img src={selectedProject.image} alt={selectedProject.title} className="w-full h-full object-cover" />
+                  <img 
+                    src={selectedProject.image} 
+                    alt={selectedProject.title} 
+                    className="w-full h-full object-cover"
+                    onError={(e) => {
+                      e.target.onerror = null;
+                      e.target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(selectedProject.title)}&background=065f46&color=10b981&size=800&bold=true`;
+                    }}
+                  />
                 </div>
               ) : (
                 <div className="w-full h-40 rounded-lg bg-dark-surface border border-dashed border-dark-border flex flex-col items-center justify-center text-center p-4">
                   <ImagePlus className="w-7 h-7 text-emerald-400 mb-1" />
-                  <span className="font-bold text-white text-xs">Autovexo Image Slot</span>
-                  <span className="text-slate-400 text-[10px] mt-0.5">Image slot ready for your app screenshots!</span>
+                  <span className="font-bold text-white text-xs">Screenshot Coming Soon</span>
+                  <span className="text-slate-400 text-[10px] mt-0.5">Add image to public/ folder</span>
                 </div>
               )}
 
